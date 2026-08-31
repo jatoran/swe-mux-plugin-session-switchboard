@@ -1,9 +1,21 @@
+import io
+import sys
 import unittest
+from unittest.mock import patch
 
 import session_switchboard as switchboard
 
 
 class SwitchboardTests(unittest.TestCase):
+    def test_output_is_utf8_even_when_windows_selected_a_legacy_pipe_encoding(self):
+        raw = io.BytesIO()
+        stream = io.TextIOWrapper(raw, encoding="cp1252")
+        with patch.object(sys, "stdout", stream), patch.object(sys, "stderr", stream):
+            switchboard.configure_output()
+            print("┌─┐")
+            stream.flush()
+            self.assertEqual(raw.getvalue().decode("utf-8").strip(), "┌─┐")
+
     def setUp(self) -> None:
         self.rows = [
             {"id": "s1", "name": "alpha", "project_id": "p1", "state": "idle"},

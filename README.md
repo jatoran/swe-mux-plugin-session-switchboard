@@ -16,7 +16,7 @@ The plugin never targets a session outside the selected Project's displayed list
 ## Install
 
 ```text
-swemux plugin install jatoran/swe-mux-plugin-session-switchboard --ref v0.2.1
+swemux plugin install jatoran/swe-mux-plugin-session-switchboard --ref v0.2.2
 swemux plugin approve swemux.official.session-switchboard
 ```
 

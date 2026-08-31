@@ -17,6 +17,13 @@ BLUE="\033[36m"
 RED="\033[31m"
 
 
+def configure_output() -> None:
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if callable(reconfigure):
+            reconfigure(encoding="utf-8", errors="replace")
+
+
 def callback(operation: str, **payload: Any) -> Any:
     request = urllib.request.Request(
         os.environ["SWEMUX_API_URL"],
@@ -184,6 +191,7 @@ def print_list() -> int:
 
 
 def main() -> int:
+    configure_output()
     parser = argparse.ArgumentParser()
     parser.add_argument("--list", action="store_true")
     args = parser.parse_args()
