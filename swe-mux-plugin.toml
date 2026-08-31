@@ -1,7 +1,7 @@
 manifest_version = 1
 id = "swemux.official.session-switchboard"
 name = "Session Switchboard"
-version = "0.2.0"
+version = "0.2.1"
 min_swe_mux_version = "0.2.0"
 description = "A compact Project session navigator and control panel."
 author = "swe-mux"

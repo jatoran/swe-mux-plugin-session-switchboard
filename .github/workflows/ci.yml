@@ -21,4 +21,7 @@ jobs:
           python-version: "3.12"
       - run: python -m unittest -v
       - run: python -m pip install "swe-mux==0.2.0"
-      - run: swemux plugin validate .
+      - name: Validate with the canonical manifest parser
+        run: >-
+          python -c "from swe_mux.plugin_manifest import parse_plugin_manifest;
+          print(parse_plugin_manifest('.').id)"
