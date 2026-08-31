@@ -1,14 +1,14 @@
 manifest_version = 1
 id = "swemux-lab.session-switchboard"
 name = "Session Switchboard"
-version = "0.1.0"
+version = "0.2.0"
 min_swe_mux_version = "0.1.5"
-description = "Project-scoped session control in a split terminal pane."
+description = "A compact Project session navigator and control panel."
 author = "swe-mux plugin lab"
 license = "MIT"
 platforms = ["windows", "linux", "macos"]
 requires = ["plugin.actions.v1", "plugin.panes.v1"]
-permissions = ["sessions.read", "terminal.write", "sessions.control", "plugins.self"]
+permissions = ["projects.read", "sessions.read", "terminal.write", "sessions.control", "plugins.self"]
 runtime_requirements = ["python>=3.10"]
 
 [[actions]]
@@ -22,7 +22,7 @@ timeout_seconds = 30
 [[panes]]
 id = "switchboard"
 title = "Session switchboard"
-description = "Open a split-pane console for inspecting and explicitly controlling Project sessions."
+description = "Open a split Project tool for inspecting and explicitly controlling regular sessions."
 contexts = ["project"]
 placement = "split"
 command = ["python", "session_switchboard.py"]

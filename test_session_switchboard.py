@@ -9,6 +9,11 @@ class SwitchboardTests(unittest.TestCase):
             {"id": "s1", "name": "alpha", "project_id": "p1", "state": "idle"},
             {"id": "s2", "name": "beta", "project_id": "p1", "state": "awaiting"},
             {"id": "s3", "name": "other", "project_id": "p2", "state": "working"},
+            {
+                "id": "plugin", "name": "switchboard", "project_id": "p1",
+                "state": "running", "plugin_id": "switchboard",
+            },
+            {"id": "ended", "name": "ended", "project_id": "p1", "state": "exited"},
         ]
 
     def test_rows_are_project_scoped_and_attention_first(self) -> None:
@@ -33,6 +38,13 @@ class SwitchboardTests(unittest.TestCase):
         self.assertEqual(calls, [])
         switchboard.apply_command("stop 1 YES", self.rows, lambda *a, **k: calls.append((a, k)))
         self.assertEqual(calls[0][0], ("session.stop",))
+
+    def test_render_is_a_compact_project_tool_not_a_plain_report(self) -> None:
+        rendered = switchboard.render("Alpha", self.rows[:2], "refreshed", color=False)
+        self.assertIn("SESSION SWITCHBOARD", rendered)
+        self.assertIn("Alpha · 2 regular sessions", rendered)
+        self.assertIn("r refresh", rendered)
+        self.assertIn("refreshed", rendered)
 
 
 if __name__ == "__main__":
