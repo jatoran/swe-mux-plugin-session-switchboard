@@ -1,11 +1,12 @@
 manifest_version = 1
-id = "swemux-lab.session-switchboard"
+id = "swemux.official.session-switchboard"
 name = "Session Switchboard"
 version = "0.2.0"
-min_swe_mux_version = "0.1.5"
+min_swe_mux_version = "0.2.0"
 description = "A compact Project session navigator and control panel."
-author = "swe-mux plugin lab"
+author = "swe-mux"
 license = "MIT"
+homepage = "https://github.com/jatoran/swe-mux-plugin-session-switchboard"
 platforms = ["windows", "linux", "macos"]
 requires = ["plugin.actions.v1", "plugin.panes.v1"]
 permissions = ["projects.read", "sessions.read", "terminal.write", "sessions.control", "plugins.self"]
